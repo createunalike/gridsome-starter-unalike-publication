@@ -13,4 +13,5 @@ import '~/scss/components/header-bar.scss';
 export default {
     name: 'HeaderBar',
 };
+
 </script>
