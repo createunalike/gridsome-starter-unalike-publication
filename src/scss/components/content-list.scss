@@ -1,0 +1,54 @@
+.content-list {
+    max-width: 1000px;
+    margin: 0 auto;
+
+    &__list {
+        &__item {
+            display: block;
+            font-size: var(--font-size-small);
+            margin-bottom: var(--padding);
+            font-weight: 400;
+            text-decoration: none;
+            border: 0;
+            line-height: var(--line-height-body);
+
+            &:hover {
+                opacity: 1;
+            }
+
+            @media only screen and (min-width: 680px) {
+                &:hover {
+                    img {
+                        opacity: .8;
+                    }
+
+                    .label {
+                        opacity: .8;
+                    }
+                }
+            }
+
+            figure {
+                background: #000;
+                margin-bottom: var(--padding-small);
+                font-size: 0;
+
+                img {
+                    background: #000;
+                    width: 100%;
+                    margin: 0;
+                }
+            }
+
+            strong {
+                display: block;
+                margin-bottom: var(--padding-xsmall);
+                font-size: var(--font-size-body);
+            }
+
+            .date {
+                margin-top: var(--padding-small);
+            }
+        }
+    }
+}
