@@ -3,7 +3,6 @@ function addStyleResource(rule) {
             .loader('style-resources-loader')
             .options({
                 patterns: [
-                    './node_modules/@thingsthat/thingsthatsass/dist/_mixins.scss',
                     './src/scss/fonts.scss',
                     './src/scss/mixins.scss',
                 ],
@@ -11,7 +10,7 @@ function addStyleResource(rule) {
 }
 
 module.exports = {
-    siteName: 'ThingsThat',
+    siteName: 'Unalike Publication',
     titleTemplate: '%s',
     chainWebpack(config) {
         

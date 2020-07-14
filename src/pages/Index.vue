@@ -3,8 +3,8 @@
         <HeaderBar />
         <main id="home">
             <ContentList />
-            <FooterBar />
         </main>
+        <FooterBar />
     </DefaultLayout>
 </template>
 
