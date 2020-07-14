@@ -2,47 +2,18 @@ const Unalike = require('@createunalike/unalike-js');
 
 module.exports = function(api) {
     
-    api.loadSource(async ({addCollection, addSchemaTypes, schema}) => {
+    api.loadSource(async ({addCollection, addSchemaTypes}) => {
 
         // Add schema for home content.
         addSchemaTypes(`
             type Article implements Node {
                 id: String
-                path: String
-                url: String
-                meta: ArticleMeta
-                publishedAt: Date
-            }
-
-            type ArticleMeta {
-                title: String
-                summary: String
-                media: ArticleMedia
-            }
-
-            type ArticleMedia {
-                content: Content
-            }
-
-            type Content {
-                id: String
-                data: Media
                 name: String
-            }
-
-            type Media {
+                path: String
+                data: JSON
                 url: String
-                versions: MediaVersions
-                type: String
-            }
-
-            type MediaVersions {
-                preview: MediaVersionPreview
-            }
-
-            type MediaVersionPreview {
-                url: String
-                type: String
+                meta: JSON
+                publishedAt: Date
             }
         `);
 
@@ -70,11 +41,14 @@ module.exports = function(api) {
         });
 
         for (const content of response.data.contents) {
+
+            content.path = `${content.path}/${content.name}`;
         
             const node = {
                 id: content.id,
+                name: content.name, 
                 path: content.path, 
-                uid: content.id,
+                data: content.data,
                 meta: content.meta,
                 url: content.url,
                 publishedAt: content.publishedAt,

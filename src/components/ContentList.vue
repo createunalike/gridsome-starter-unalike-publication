@@ -31,26 +31,7 @@ query {
                 path
                 url
                 publishedAt
-                meta {
-                    title
-                    summary
-                    media {
-                        content {
-                            id
-                            name
-                            data {
-                                url
-                                type
-                                versions {
-                                    preview {
-                                        url
-                                        type
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+                meta
             }
         }
     }
