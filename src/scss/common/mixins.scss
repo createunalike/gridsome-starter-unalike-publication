@@ -1,0 +1,8 @@
+@function sizeScale($min, $max) {
+    @return calc(#{$min}px + (#{$max} - #{$min}) * ((100vw - 375px) / (1600 - 375)));
+}
+
+// 375 is the
+@function fontSizeScale($min, $max) {
+    @return calc(#{$min}px + (#{$max} - #{$min}) * ((100vw - 375px) / (1600 - 375)));
+}

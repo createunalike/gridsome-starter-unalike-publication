@@ -3,8 +3,7 @@ function addStyleResource(rule) {
             .loader('style-resources-loader')
             .options({
                 patterns: [
-                    './src/scss/fonts.scss',
-                    './src/scss/mixins.scss',
+                    './src/scss/common/mixins.scss',
                 ],
             });
 }

@@ -2,7 +2,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/bcc02ff7-1ad7-4040-86bb-c9d71813e7c5/deploy-status)](https://app.netlify.com/sites/gridsome-starter-unalike-publication/deploys)
 
-A simple publication using the public API for Unalike. This publication only lists the available content and then uses the Unalike publication URL to display the content.
+A simple publication using the public API for Unalike. This publication only lists the available content and then uses the Unalike publication URL to display the content. It's a bare minimum publication with basics of the Unalike platform.
 
 A **[Demo](https://gridsome-starter-unalike-publication.netlify.app)** is hosted on Netlify.
 

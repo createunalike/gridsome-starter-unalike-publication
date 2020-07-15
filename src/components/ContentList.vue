@@ -1,30 +1,20 @@
 <template>
-    <section v-if="items.length > 0" class="content-list">
-        <div class="inner">
-            <div class="content-list__list">
-                <a v-for="(item, index) in items" :key="index" :href="item.url" class="content-list__list__item" target="_blank">
-                    <figure v-if="item.meta.media && item.meta.media.content">
-                        <img loading="lazy" :src="item.meta.media.content.data.url">
-                    </figure>
-
-                    <div class="label">
-                        <strong>{{ item.meta.title }}</strong>
-                        {{ item.meta.summary }}
-                    </div>
-
-                    <div class="date">
-                        {{ item.publishedAt | dateFromNow }}
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>  
+    <div v-if="items.length > 0" class="content-list">
+        <ul>
+            <li v-for="(item, index) in items" :key="index">
+                <div class="content-list__title">
+                    <g-link :to="item.path">{{ item.meta.title }}</g-link>
+                </div>
+                <div class="content-list__date">{{ item.publishedAt | dateFromNow }}</div>
+            </li>
+        </ul>
+    </div>  
 </template>
 
 <static-query>
 
 query {
-    articles: allArticle {
+    contents: allContent {
         edges {
             node {
                 id
@@ -58,8 +48,8 @@ export default {
     methods: {
         applyStaticArticle() {
 
-            for (const article of this.$static.articles.edges.reverse()) {
-                this.items.push(article.node);
+            for (const content of this.$static.contents.edges.reverse()) {
+                this.items.push(content.node);
             }
 
         },

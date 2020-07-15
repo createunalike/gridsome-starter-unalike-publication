@@ -1,7 +1,12 @@
 <template>
     <header>
         <div class="inner">
-            <g-link to="/" class="header__logo">Unalike Publication</g-link>
+            <div class="left">
+                <g-link to="/" class="header__logo"><div>Unalike Publication</div></g-link>
+            </div>
+            <div class="right">
+                <!-- Add in navigation here. //-->
+            </div>
         </div>
     </header>
 </template>

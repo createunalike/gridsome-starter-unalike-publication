@@ -1,53 +1,49 @@
 .content-list {
-    max-width: 1000px;
-    margin: 0 auto;
+    margin-top: var(--dimension-content-margin-vertical);
+    margin-bottom: var(--dimension-content-margin-vertical);
+    margin-left: auto;
+    margin-right: auto;
+    max-width: var(--dimension-content-body);
+    padding: var(--dimension-content-padding);
+    font-size: var(--font-size-content-body);
+    color: var(--color-text-secondary);
 
-    &__list {
-        &__item {
-            display: block;
-            font-size: var(--font-size-small);
-            margin-bottom: var(--padding);
-            font-weight: 400;
-            text-decoration: none;
-            border: 0;
-            line-height: var(--line-height-body);
+    ul {
+        padding: 0;
+        margin: 0;
 
-            &:hover {
-                opacity: 1;
-            }
+        li {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding: 0;
+            margin: 0 0 20px;
 
-            @media only screen and (min-width: 680px) {
-                &:hover {
-                    img {
-                        opacity: .8;
-                    }
+            .content-list__title {
+                font-size: var(--font-size-content-list);
+                margin-right: var(--dimension-content-padding);
+                flex: 1;
 
-                    .label {
-                        opacity: .8;
-                    }
-                }
-            }
-
-            figure {
-                background: #000;
-                margin-bottom: var(--padding-small);
-                font-size: 0;
-
-                img {
-                    background: #000;
+                @media (max-width: 680px) {
+                    flex: none;
                     width: 100%;
-                    margin: 0;
+                    margin-right: 0;
+                }
+
+                a {
+                    text-decoration: none;
+                    color: var(--color-text-primary);
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
                 }
             }
 
-            strong {
-                display: block;
-                margin-bottom: var(--padding-xsmall);
-                font-size: var(--font-size-body);
-            }
-
-            .date {
-                margin-top: var(--padding-small);
+            .content-list__date {
+                color: var(--color-text-secondary);
+                white-space: nowrap;
+                font-size: var(--font-size-content-list-date);
             }
         }
     }

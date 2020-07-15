@@ -30,3 +30,9 @@ Vue.filter('dateFromNow', function(value) {
         return dayjs(String(value)).fromNow(true);
     }
 });
+
+Vue.filter('tags', function(value) {
+    if (value) {
+        return value.join(' ');
+    }
+});

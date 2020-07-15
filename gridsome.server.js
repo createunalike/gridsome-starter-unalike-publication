@@ -6,32 +6,43 @@ module.exports = function(api) {
 
         // Add schema for home content.
         addSchemaTypes(`
-            type Article implements Node {
+            type Content implements Node {
                 id: String
                 name: String
                 path: String
                 data: JSON
-                url: String
+                model: JSON
                 meta: JSON
+                url: String
                 publishedAt: Date
+                tags: [String]
+                contributors: JSON
             }
         `);
 
-        const articleDocs = addCollection('Article');
+        const contentDocs = addCollection('Content');
 
-        // Prefetch the blog.
         const client = new Unalike();
+
+        // Chnage this url to your publication public API
         client.setApi('https://your-publication-name.unalike.net/api/');
-    
+        
         const response = await client.query(`query contents($pageSize: Int, $sortBy: String, $sortDirection: SortDirection, $type: [String]) {
                     contents(pageSize: $pageSize, sortBy: $sortBy, sortDirection: $sortDirection, type: $type) {
                         id
                         name
                         data
                         meta
+                        model
                         path
                         url
                         publishedAt
+                        tags
+                        contributors {
+                            person {
+                                id
+                            }
+                        }
                     }
                 }`, {
             pageSize: 20,
@@ -42,19 +53,10 @@ module.exports = function(api) {
 
         for (const content of response.data.contents) {
 
-            content.path = `${content.path}/${content.name}`;
-        
-            const node = {
-                id: content.id,
-                name: content.name, 
-                path: content.path, 
-                data: content.data,
-                meta: content.meta,
-                url: content.url,
-                publishedAt: content.publishedAt,
-            };
+            const node = content;
+            node.path = `${content.path}/${content.name}`;
 
-            articleDocs.addNode(node);
+            contentDocs.addNode(node);
 
         }
  
