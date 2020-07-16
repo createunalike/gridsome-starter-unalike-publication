@@ -32,7 +32,7 @@
                         <div class="content__info__details">
                             <div class="contributors">
                                 <div v-for="(contributor, contributorIndex) in $page.content.contributors" :key="contributorIndex">
-                                    <ProfileImage size="medium" :person="item.person" />
+                                    <ProfileImage size="medium" :person="contributor.person" />
                                 </div>
                             </div>
                             <div class="date">{{ $page.content.publishedAt | dateFromNow }}</div>
