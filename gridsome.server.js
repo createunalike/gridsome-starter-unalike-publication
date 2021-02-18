@@ -22,7 +22,7 @@ module.exports = function(api) {
 
         const contentDocs = addCollection('Content');
 
-        const client = new Unalike();
+        const client = new Unalike.Client();
 
         // Chnage this url to your publication public API
         client.setApi('https://your-publication-name.unalike.net/api/');
@@ -48,7 +48,7 @@ module.exports = function(api) {
             pageSize: 20,
             sortBy: 'publishedAt',
             sortDirection: 'DESC',
-            type: ['articlemedia', 'article'],
+            type: ['story'],
         });
 
         for (const content of response.data.contents) {

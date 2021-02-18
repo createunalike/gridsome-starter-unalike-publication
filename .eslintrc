@@ -10,15 +10,13 @@
     },
     "extends": [
         "eslint:recommended",
-        "plugin:vue/recommended"
+        "plugin:vue/vue3-recommended"
     ],
-    "globals": {
-        "window": true
-    },
     "plugins": [
-      "vue"
+        "vue"
     ],
     "rules": {
+        "prefer-template": 2,
         "no-case-declarations": 0,
         "no-cond-assign": 0,
         "no-irregular-whitespace": 2,
@@ -76,37 +74,53 @@
         "keyword-spacing": 2,
         "linebreak-style": 2,
         "max-len": 0,
+
         "no-console": 0,
+
+        //"new-cap": 2,
+
         "no-array-constructor": 2,
+
         "no-mixed-spaces-and-tabs": 2,
+
         "no-multiple-empty-lines": [2, {
             "max": 2
         }],
+
         "no-new-object": 2,
+
         "no-tabs": 2,
+
         "no-trailing-spaces": 0,
+
         "object-curly-spacing": 2,
+
         "one-var": [2, {
             "var": "never",
             "let": "never",
             "const": "never"
         }],
+
         "padded-blocks": 0,
+
         "quote-props": [2, "consistent"],
         "quotes": [2, "single", {
-          "allowTemplateLiterals": true
+            "allowTemplateLiterals": true
         }],
         "require-jsdoc": 0,
         "semi": 2,
         "semi-spacing": 2,
+
         "space-before-blocks": 2,
         "space-before-function-paren": [2, {
-          "asyncArrow": "always",
-          "anonymous": "never",
-          "named": "never"
+            "asyncArrow": "always",
+            "anonymous": "never",
+            "named": "never"
         }],
+
         "spaced-comment": [2, "always"],
         "switch-colon-spacing": 2,
+
         "arrow-parens": [2, "always"],
         "constructor-super": 2,
         "generator-star-spacing": [2, "after"],
@@ -114,21 +128,28 @@
         "no-this-before-super": 2,
         "no-var": 2,
         "prefer-const": ["error", {
-          "destructuring": "all"
+            "destructuring": "all"
         }],
         "prefer-rest-params": 2,
         "prefer-spread": 2,
         "rest-spread-spacing": 2,
         "yield-star-spacing": [2, "after"],
         "no-useless-escape": 0,
-        "vue/html-indent": ["error", 4, {
-          "attribute": 2,
-          "baseIndent": 1,
-          "closeBracket": 0,
-          "alignAttributesVertically": false
-        }],
-        "vue/max-attributes-per-line": 0,
-        "vue/singleline-html-element-content-newline": 0,
-        "vue/no-v-html": 0
+
+         "vue/no-v-html": 0,
+         "vue/html-indent": ["error", 4, {
+             "attribute": 2,
+             "baseIndent": 1,
+             "closeBracket": 0,
+             "alignAttributesVertically": false
+         }],
+         "vue/max-attributes-per-line": 0,
+         "vue/singleline-html-element-content-newline": 0,
+         "vue/no-bare-strings-in-template": 1,
+ 
+         "vue/no-deprecated-destroyed-lifecycle": 0,
+         "vue/no-deprecated-v-on-native-modifier": 0,
+         "vue/no-deprecated-filter": 0,
+         "vue/no-deprecated-dollar-scopedslots-api": 0
     }
-  }
+}

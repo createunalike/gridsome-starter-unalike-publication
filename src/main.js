@@ -8,6 +8,7 @@ import DefaultLayout from '~/layouts/Default.vue';
 import HeaderBar from '~/components/HeaderBar.vue';
 import FooterBar from '~/components/FooterBar.vue';
 import ProfileImage from '~/components/ProfileImage.vue';
+import Content from '~/components/Content.vue';
 
 import './filters';
 
@@ -18,5 +19,6 @@ export default function(Vue, {appOptions, router, head, isClient}) {
     Vue.component('HeaderBar', HeaderBar);
     Vue.component('FooterBar', FooterBar);
     Vue.component('ProfileImage', ProfileImage);
+    Vue.component('Content', Content);
     
 }

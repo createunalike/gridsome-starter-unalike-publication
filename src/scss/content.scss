@@ -24,21 +24,21 @@
         margin: 2em auto 3em;
     }
 
-    .content__livevideo {
-        max-width: var(--dimension-content-body);
-        margin-bottom: var(--dimension-content-margin-vertical-large);
-        margin-top: var(--dimension-content-margin-vertical-large);
-        margin-right: auto;
+    .content__publisheddate {
+        margin-top: var(--dimension-content-margin-vertical);
+        margin-bottom: var(--dimension-content-margin-vertical);
         margin-left: auto;
+        margin-right: auto;
         font-size: var(--font-size-content-body);
         position: relative;
-        color: #fff;
-        overflow: hidden;
-        border-radius: sizeScale(0, 6);
-
-        &--full {
-            max-width: sizeScale(375, 1024);
-        }
+        max-width: var(--dimension-content-body);
+        padding-top: var(--dimension-content-padding-vertical);
+        padding-bottom: var(--dimension-content-padding-vertical);
+        padding-right: var(--dimension-content-padding);
+        padding-left: var(--dimension-content-padding);
+        font-weight: 400;
+        color: var(----color-text-content-info);
+        font-family: var(--font-family-content-date);
     }
 
     .content__media {

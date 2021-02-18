@@ -2,10 +2,10 @@
     <footer>
         <div class="inner">
             <div class="left">
-                &copy; Copyright thingy might go here.
+                &copy; Copyright? Unalike Publication
             </div>
             <div class="right">
-                Made with Unalike
+                <a href="https://www.unalike.net">Made with Unalike</a>
             </div>
         </div>
     </footer>
