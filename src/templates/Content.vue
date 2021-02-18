@@ -2,7 +2,7 @@
     <DefaultLayout>
         <HeaderBar />
         <main>
-            <Content class="content" :content="$page.content" :model="$page.content.model" :id="`content-${$page.content.uid}`" />
+            <Content :content="$page.content" :model="$page.content.model" :id="`content-${$page.content.uid}`" />
             <FooterBar /> 
         </main>
     </DefaultLayout>

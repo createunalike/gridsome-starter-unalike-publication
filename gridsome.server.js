@@ -18,9 +18,23 @@ module.exports = function(api) {
                 tags: [String]
                 contributors: JSON
             }
+
+            type Home implements Node {
+                id: String
+                name: String
+                path: String
+                data: JSON
+                model: JSON
+                meta: JSON
+                url: String
+                publishedAt: Date
+                tags: [String]
+                contributors: JSON
+            }
         `);
 
         const contentDocs = addCollection('Content');
+        const homeDocs = addCollection('Home');
 
         const client = new Unalike.Client();
 
@@ -33,6 +47,7 @@ module.exports = function(api) {
                         name
                         data
                         meta
+                        type
                         model
                         path
                         url
@@ -45,18 +60,24 @@ module.exports = function(api) {
                         }
                     }
                 }`, {
-            pageSize: 20,
+            pageSize: 100,
             sortBy: 'publishedAt',
             sortDirection: 'DESC',
-            type: ['story'],
+            type: ['home', 'story'],
         });
 
         for (const content of response.data.contents) {
 
-            const node = content;
-            node.path = `${content.path}/${content.name}`;
+            if (content.type == 'story') {
 
-            contentDocs.addNode(node);
+                content.path = `${content.path}/${content.name}`;
+                contentDocs.addNode(content);
+
+            } else if (content.type == 'home') {
+
+                homeDocs.addNode(content);
+
+            }
 
         }
  

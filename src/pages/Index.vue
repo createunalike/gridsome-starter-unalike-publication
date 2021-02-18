@@ -2,37 +2,36 @@
     <DefaultLayout class="day">
         <HeaderBar />
         <main id="home">
-            <article class="content">
-                <div class="content__body">
-                    <h1>Welcome to the example Unalike publication</h1>
-                </div>
-                <div class="content__body">
-                    <p>This is a simple static publication built with the Gridsome framework and using Unalike for the headless publication management. With the headless approach, we want to give publishers and developers a way to create publications and membership communities that don't rely solely on the Unalike platform.</p>
-                </div>
-                <ContentList />
-            </article>
+            <Content v-if="$page.home" :content="$page.home" :model="$page.home.model" :id="`content-${$page.home.uid}`" />
             <FooterBar />
         </main>
     </DefaultLayout>
 </template>
 
+<page-query>
+
+query {
+    home (path: "/76471668-e8ad-4bf0-b7cf-2095ad21d01b") {
+        id
+        name
+        data
+        meta
+        model
+        tags
+        contributors
+        publishedAt
+    }
+}
+
+</page-query>
+
 <script>
-
-import '~/scss/home.scss';
-
-import ContentList from '../components/ContentList.vue';
 
 export default {
     metaInfo() {
         return {
-            title: 'Unalike Publication',
-            meta: [
-                {name: 'description', content: ''},
-            ],
+           title: this.$page.home.meta.title,
         };
-    },
-    components: {
-        ContentList,
     },
 };
 

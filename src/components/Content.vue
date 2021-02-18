@@ -1,7 +1,7 @@
 <template>
     <article class="content" :id="`content-${content.uid}`">
         <div v-if="fields" v-for="(item, itemIndex) in fields" :key="itemIndex">
-            <div v-if="item.type == 'media'" class="content__media" :class="{[`content__media--${item.value.size}`]: item.value.size}">
+             <div v-if="item.type == 'media'" class="content__media" :class="{[`content__media--${item.value.size}`]: item.value.size}">
                 <figure v-if="item.value.type == 'giphy'" class="media">
                     <img :src="`//media.giphy.com/media/${item.value.id}/giphy.gif`">
                     <figcaption v-if="item.value.caption">{{ item.value.caption }}</figcaption>
@@ -37,6 +37,7 @@
                     </div>
                 </div>
             </div>
+            <ContentList v-if="item.type == 'contentlist'" />
         </div>
     </article>
 </template>
@@ -44,12 +45,11 @@
 <script>
 
 import Unalike from '@createunalike/unalike-js';
+import ContentList from './ContentList.vue';
 
 export default {
-    metaInfo() {
-        return {
-            title: this.$page.content.meta.title,
-        };
+    components: {
+        ContentList,
     },
     props: {
         content: {
@@ -85,7 +85,7 @@ export default {
                 field.value = html;
                 this.fields.push(field);
 
-            } else if (field.type == 'heading' && this.$page.content.data[key] && this.content.data[key].ops) {
+            } else if (field.type == 'heading' && this.content.data[key] && this.content.data[key].ops) {
 
                 let html = Unalike.Transformer.convertDeltaToHtml(this.content.data[key]);
                 
