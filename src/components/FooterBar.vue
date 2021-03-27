@@ -2,7 +2,7 @@
     <footer>
         <div class="inner">
             <div class="left">
-                &copy; Copyright? Unalike Publication
+                Unalike Publication
             </div>
             <div class="right">
                 <a href="https://www.unalike.net">Made with Unalike</a>

@@ -1,7 +1,7 @@
 <template>
-    <article class="content" :id="`content-${content.uid}`">
-        <div v-if="fields" v-for="(item, itemIndex) in fields" :key="itemIndex">
-             <div v-if="item.type == 'media'" class="content__media" :class="{[`content__media--${item.value.size}`]: item.value.size}">
+    <article v-if="fields" :id="`content-${content.uid}`" class="content">
+        <div v-for="(item, itemIndex) in fields" :key="itemIndex">
+            <div v-if="item.type == 'media'" class="content__media" :class="{[`content__media--${item.value.size}`]: item.value.size}">
                 <figure v-if="item.value.type == 'giphy'" class="media">
                     <img :src="`//media.giphy.com/media/${item.value.id}/giphy.gif`">
                     <figcaption v-if="item.value.caption">{{ item.value.caption }}</figcaption>
@@ -22,7 +22,7 @@
                 <h1>{{ item.value }}</h1>
             </div>
             <div v-if="item.type == 'text'" class="content__body" v-html="item.value" />
-            <div v-if="item.type == 'tags' && $page.content.tag && $page.content.tag.length > 0"  class="content__tags">
+            <div v-if="item.type == 'tags' && $page.content.tag && $page.content.tag.length > 0" class="content__tags">
                 {{ content.tags | tags }}
             </div>
             <div v-if="item.type == 'publisheddate'" class="content__publisheddate">
@@ -59,7 +59,7 @@ export default {
         model: {
             type: Object,
             default: null,
-        }
+        },
     },
     data() {
         return {
@@ -87,7 +87,7 @@ export default {
 
             } else if (field.type == 'heading' && this.content.data[key] && this.content.data[key].ops) {
 
-                let html = Unalike.Transformer.convertDeltaToHtml(this.content.data[key]);
+                let html = Unalike.Transformer.convertDeltaToHtml(this.content.data[key], this.render);
                 
                 // TODO: Not ideal with new heading deltas, need to introduce custom render.
                 html = html.replace('<p>', '');
@@ -103,6 +103,97 @@ export default {
 
             }
         }
+    },
+    methods: {
+        render(customOp) {
+
+            switch (customOp.insert.type) {
+                case 'embed': {
+                    const value = customOp.insert.value;
+                
+                    let html = '<div class="embed">';
+        
+                    if (value.type == 'youtube') {
+                        html += `<div class="embed__youtube"><iframe width="560" height="315" src="${value.url}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>`;
+                    } else if (value.type == 'tweet') {
+                        html += `<div class="embed__tweet" data-id="${value.id}"></div>`;
+                    }
+                    
+                    html += '</div>';
+        
+                    return html;
+                }
+                
+                case 'divider': {
+                    return `<hr />`;
+                }
+        
+                case 'code': {
+                    return `<pre class="code"><code>${customOp.insert.value}</code></pre>`;
+                }
+                
+                case 'media': {
+        
+                    const value = customOp.insert.value;
+                    const classes = ['media'];
+        
+                    if (value.size) {
+                        classes.push(`media--${value.size}`);
+                    }
+
+                    const content = value.content;
+
+                    if (content && content.data) {
+                    
+                        const data = content.data;
+                        const type = data.type ? content.data.type : null;
+            
+                        let html = `<figure${classes.length > 0 ? ` class="${classes.join(' ')}"` : ''}>`;
+                        
+                        if (type == 'image') {
+            
+                            classes.push(`media--image`);
+            
+                            html = `${html}<img src="${data.url}">
+                            ${value.caption ? `<figcaption>${value.caption}</figcaption>` : ''}`;
+            
+                        } else if (type == 'video') {
+            
+                            classes.push(`media--video`);
+            
+                            let videos = '';
+            
+                            if (data.versions) {
+                                for (const version of Object.values(data.versions)) {
+                                    if (version.type == 'video') {
+                                        videos += `<source src="${version.url}" type="${version.contentType}">`;
+                                    }
+                                }
+                            }
+            
+                            html = `${html}<video width="100%" crossorigin playsinline>${videos}</video>
+                            ${value.caption ? `<figcaption>${value.caption}</figcaption>` : ''}`;
+            
+                        } else if (type == 'audio') {
+            
+                            classes.push(`media--audio`);
+            
+                            html = `${html}<audio src="${data.url}" crossorigin></audio>
+                            ${value.caption ? `<figcaption>${value.caption}</figcaption>` : ''}`;
+
+                        }
+            
+                        html = `${html}</figure>`;
+        
+                        return html;
+
+                    }
+
+                    return '';
+        
+                }
+            }
+        },
     },
 };
 

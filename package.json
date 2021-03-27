@@ -8,14 +8,14 @@
     "lint": "sass-lint && eslint --ext .js src"
   },
   "dependencies": {
-    "@createunalike/unalike-js": "0.16.3",
+    "@createunalike/unalike-js": "0.17.0",
     "dayjs": "1.10.4",
     "gridsome": "0.7.23"
   },
   "devDependencies": {
-    "eslint": "7.20.0",
-    "eslint-plugin-html": "6.1.1",
-    "eslint-plugin-vue": "7.6.0",
+    "eslint": "7.23.0",
+    "eslint-plugin-html": "6.1.2",
+    "eslint-plugin-vue": "7.8.0",
     "node-sass": "5.0.0",
     "sass-lint": "1.13.1",
     "sass-loader": "10.1.0",

@@ -2,7 +2,7 @@
     <DefaultLayout class="day">
         <HeaderBar />
         <main id="home">
-            <Content v-if="$page.home" :content="$page.home" :model="$page.home.model" :id="`content-${$page.home.uid}`" />
+            <Content v-if="$page.home" :id="`content-${$page.home.uid}`" :content="$page.home" :model="$page.home.model" />
             <FooterBar />
         </main>
     </DefaultLayout>
@@ -30,7 +30,7 @@ query {
 export default {
     metaInfo() {
         return {
-           title: this.$page.home.meta.title,
+            title: this.$page.home.meta.title,
         };
     },
 };
